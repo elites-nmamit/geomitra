@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Download</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            display: block;
+            text-align: center;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Download Certificate</h2>
+    <input type="text" id="usn" placeholder="Enter your 10-digit USN" maxlength="10">
+    <button onclick="downloadCertificate()">Download</button>
+</div>
+
+<script>
+    function downloadCertificate() {
+        var usn = document.getElementById('usn').value.toUpperCase();
+
+        // Check if the USN is 10 digits long
+        if (usn.length !== 10 || !/^[A-Z0-9]+$/.test(usn)) {
+            alert("Please enter a valid 10-digit USN.");
+            return;
+        }
+
+        // Construct the download URL
+        var downloadUrl = "https://certificates-blush.vercel.app/" + usn + ".pdf";
+
+        // Create an anchor element and set its download attribute
+        var link = document.createElement('a');
+        link.href = downloadUrl;
+        link.download = usn + ".pdf"; // This sets the filename for the download
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link); // Remove the element after triggering the download
+    }
+</script>
+
+</body>
+</html>
