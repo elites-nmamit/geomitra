@@ -28,6 +28,11 @@
             box-sizing: border-box;
         }
 
+        .logo {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+
         input[type="text"] {
             width: 100%;
             padding: 15px;
@@ -65,12 +70,17 @@
                 padding: 12px;
                 font-size: 14px;
             }
+
+            .logo {
+                max-width: 100px;
+            }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <img src="11.png" alt="Logo" class="logo">
     <h2>Download Certificate</h2>
     <input type="text" id="usn" placeholder="Enter your 10-digit USN" maxlength="10">
     <button onclick="downloadCertificate()">Download</button>
